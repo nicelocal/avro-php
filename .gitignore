@@ -1,0 +1,4 @@
+pkg
+vendor
+test/tmp/
+.phpunit.result.cache

@@ -359,7 +359,7 @@ class AvroIODatumReader
         }
         // Fill in default values
         foreach ($readers_fields as $field_name => $field) {
-            if (isset($writers_fields[$field_name])) {
+            if (isset($record[$field_name])) {
                 continue;
             }
             if ($field->hasDefaultValue()) {

@@ -1,5 +1,7 @@
 {
   "name": "nicelocal/avro-php",
+  "license": "Apache-2.0",
+  "description": "AVRO Encoder/Decoder for php",
   "type": "package",
   "require": {
     "php": ">=8.0"

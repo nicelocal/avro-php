@@ -156,7 +156,7 @@ class AvroIOBinaryEncoder
      */
     public static function doubleToLongBits($double)
     {
-        return pack('e', (double) $double);
+        return pack('e', (float) $double);
     }
 
     /**

@@ -170,7 +170,7 @@ class AvroIOBinaryDecoder
     public static function longBitsToDouble($bits)
     {
         $double = unpack('e', $bits);
-        return (double) $double[1];
+        return (float) $double[1];
     }
 
     /**

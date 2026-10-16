@@ -45,9 +45,9 @@ class FloatIntEncodingTest extends TestCase
 
   static function make_special_vals()
   {
-    self::$DOUBLE_NAN     = (double) NAN;
-    self::$DOUBLE_POS_INF = (double) INF;
-    self::$DOUBLE_NEG_INF = (double) -INF;
+    self::$DOUBLE_NAN     = (float) NAN;
+    self::$DOUBLE_POS_INF = (float) INF;
+    self::$DOUBLE_NEG_INF = (float) -INF;
     self::$FLOAT_NAN      = (float) NAN;
     self::$FLOAT_POS_INF  = (float) INF;
     self::$FLOAT_NEG_INF  = (float) -INF;
@@ -134,36 +134,36 @@ class FloatIntEncodingTest extends TestCase
     $ruby_to_generate_vals =<<<_RUBY
       def d2lb(d); [d].pack('E') end
       dary = (-10..10).to_a + [-1234.2132, -211e23]
-      dary.each {|x| b = d2lb(x); puts %/array(self::DOUBLE_TYPE, (double) #{x}, #{b.inspect}, '#{b.unpack('h*')[0]}'),/}
+      dary.each {|x| b = d2lb(x); puts %/array(self::DOUBLE_TYPE, (float) #{x}, #{b.inspect}, '#{b.unpack('h*')[0]}'),/}
       def f2ib(f); [f].pack('e') end
       fary = (-10..10).to_a + [-1234.5, -211.3e6]
       fary.each {|x| b = f2ib(x); puts %/array(self::FLOAT_TYPE, (float) #{x}, #{b.inspect}, '#{b.unpack('h*')[0]}'),/}
 _RUBY;
 
     return array(
-                 array(self::DOUBLE_TYPE, (double) -10, "\000\000\000\000\000\000$\300", '000000000000420c'),
-                 array(self::DOUBLE_TYPE, (double) -9, "\000\000\000\000\000\000\"\300", '000000000000220c'),
-                 array(self::DOUBLE_TYPE, (double) -8, "\000\000\000\000\000\000 \300", '000000000000020c'),
-                 array(self::DOUBLE_TYPE, (double) -7, "\000\000\000\000\000\000\034\300", '000000000000c10c'),
-                 array(self::DOUBLE_TYPE, (double) -6, "\000\000\000\000\000\000\030\300", '000000000000810c'),
-                 array(self::DOUBLE_TYPE, (double) -5, "\000\000\000\000\000\000\024\300", '000000000000410c'),
-                 array(self::DOUBLE_TYPE, (double) -4, "\000\000\000\000\000\000\020\300", '000000000000010c'),
-            /**/ array(self::DOUBLE_TYPE, (double) -3, "\000\000\000\000\000\000\010\300", '000000000000800c'),
-                 array(self::DOUBLE_TYPE, (double) -2, "\000\000\000\000\000\000\000\300", '000000000000000c'),
-                 array(self::DOUBLE_TYPE, (double) -1, "\000\000\000\000\000\000\360\277", '0000000000000ffb'),
-                 array(self::DOUBLE_TYPE, (double) 0, "\000\000\000\000\000\000\000\000", '0000000000000000'),
-                 array(self::DOUBLE_TYPE, (double) 1, "\000\000\000\000\000\000\360?", '0000000000000ff3'),
-                 array(self::DOUBLE_TYPE, (double) 2, "\000\000\000\000\000\000\000@", '0000000000000004'),
-            /**/ array(self::DOUBLE_TYPE, (double) 3, "\000\000\000\000\000\000\010@", '0000000000008004'),
-                 array(self::DOUBLE_TYPE, (double) 4, "\000\000\000\000\000\000\020@", '0000000000000104'),
-                 array(self::DOUBLE_TYPE, (double) 5, "\000\000\000\000\000\000\024@", '0000000000004104'),
-                 array(self::DOUBLE_TYPE, (double) 6, "\000\000\000\000\000\000\030@", '0000000000008104'),
-                 array(self::DOUBLE_TYPE, (double) 7, "\000\000\000\000\000\000\034@", '000000000000c104'),
-                 array(self::DOUBLE_TYPE, (double) 8, "\000\000\000\000\000\000 @", '0000000000000204'),
-                 array(self::DOUBLE_TYPE, (double) 9, "\000\000\000\000\000\000\"@", '0000000000002204'),
-                 array(self::DOUBLE_TYPE, (double) 10, "\000\000\000\000\000\000$@", '0000000000004204'),
-            /**/ array(self::DOUBLE_TYPE, (double) -1234.2132, "\007\316\031Q\332H\223\300", '70ec9115ad84390c'),
-                 array(self::DOUBLE_TYPE, (double) -2.11e+25, "\311\260\276J\031t1\305", '9c0beba49147135c'),
+                 array(self::DOUBLE_TYPE, (float) -10, "\000\000\000\000\000\000$\300", '000000000000420c'),
+                 array(self::DOUBLE_TYPE, (float) -9, "\000\000\000\000\000\000\"\300", '000000000000220c'),
+                 array(self::DOUBLE_TYPE, (float) -8, "\000\000\000\000\000\000 \300", '000000000000020c'),
+                 array(self::DOUBLE_TYPE, (float) -7, "\000\000\000\000\000\000\034\300", '000000000000c10c'),
+                 array(self::DOUBLE_TYPE, (float) -6, "\000\000\000\000\000\000\030\300", '000000000000810c'),
+                 array(self::DOUBLE_TYPE, (float) -5, "\000\000\000\000\000\000\024\300", '000000000000410c'),
+                 array(self::DOUBLE_TYPE, (float) -4, "\000\000\000\000\000\000\020\300", '000000000000010c'),
+            /**/ array(self::DOUBLE_TYPE, (float) -3, "\000\000\000\000\000\000\010\300", '000000000000800c'),
+                 array(self::DOUBLE_TYPE, (float) -2, "\000\000\000\000\000\000\000\300", '000000000000000c'),
+                 array(self::DOUBLE_TYPE, (float) -1, "\000\000\000\000\000\000\360\277", '0000000000000ffb'),
+                 array(self::DOUBLE_TYPE, (float) 0, "\000\000\000\000\000\000\000\000", '0000000000000000'),
+                 array(self::DOUBLE_TYPE, (float) 1, "\000\000\000\000\000\000\360?", '0000000000000ff3'),
+                 array(self::DOUBLE_TYPE, (float) 2, "\000\000\000\000\000\000\000@", '0000000000000004'),
+            /**/ array(self::DOUBLE_TYPE, (float) 3, "\000\000\000\000\000\000\010@", '0000000000008004'),
+                 array(self::DOUBLE_TYPE, (float) 4, "\000\000\000\000\000\000\020@", '0000000000000104'),
+                 array(self::DOUBLE_TYPE, (float) 5, "\000\000\000\000\000\000\024@", '0000000000004104'),
+                 array(self::DOUBLE_TYPE, (float) 6, "\000\000\000\000\000\000\030@", '0000000000008104'),
+                 array(self::DOUBLE_TYPE, (float) 7, "\000\000\000\000\000\000\034@", '000000000000c104'),
+                 array(self::DOUBLE_TYPE, (float) 8, "\000\000\000\000\000\000 @", '0000000000000204'),
+                 array(self::DOUBLE_TYPE, (float) 9, "\000\000\000\000\000\000\"@", '0000000000002204'),
+                 array(self::DOUBLE_TYPE, (float) 10, "\000\000\000\000\000\000$@", '0000000000004204'),
+            /**/ array(self::DOUBLE_TYPE, (float) -1234.2132, "\007\316\031Q\332H\223\300", '70ec9115ad84390c'),
+                 array(self::DOUBLE_TYPE, (float) -2.11e+25, "\311\260\276J\031t1\305", '9c0beba49147135c'),
 
                  array(self::FLOAT_TYPE, (float) -10, "\000\000 \301", '0000021c'),
                  array(self::FLOAT_TYPE, (float) -9, "\000\000\020\301", '0000011c'),

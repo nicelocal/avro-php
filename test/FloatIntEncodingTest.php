@@ -32,9 +32,6 @@ class FloatIntEncodingTest extends TestCase
   static $FLOAT_NAN;
   static $FLOAT_POS_INF;
   static $FLOAT_NEG_INF;
-  static $DOUBLE_NAN;
-  static $DOUBLE_POS_INF;
-  static $DOUBLE_NEG_INF;
 
   static $LONG_BITS_NAN;
   static $LONG_BITS_POS_INF;
@@ -45,9 +42,6 @@ class FloatIntEncodingTest extends TestCase
 
   static function make_special_vals()
   {
-    self::$DOUBLE_NAN     = (float) NAN;
-    self::$DOUBLE_POS_INF = (float) INF;
-    self::$DOUBLE_NEG_INF = (float) -INF;
     self::$FLOAT_NAN      = (float) NAN;
     self::$FLOAT_POS_INF  = (float) INF;
     self::$FLOAT_NEG_INF  = (float) -INF;
@@ -80,28 +74,13 @@ class FloatIntEncodingTest extends TestCase
     $this->assertTrue(is_infinite(self::$FLOAT_NEG_INF), 'float neg infinity is infinite');
     $this->assertTrue(0 > self::$FLOAT_NEG_INF, 'float neg infinity is less than 0');
     $this->assertFalse(is_nan(self::$FLOAT_NEG_INF), 'float neg infinity is not NaN');
-
-    $this->assertIsFloat(self::$DOUBLE_NAN, 'double NaN is a double');
-    $this->assertTrue(is_nan(self::$DOUBLE_NAN), 'double NaN is NaN');
-    $this->assertFalse(is_infinite(self::$DOUBLE_NAN), 'double NaN is not infinite');
-
-    $this->assertIsFloat(self::$DOUBLE_POS_INF, 'double pos infinity is a double');
-    $this->assertTrue(is_infinite(self::$DOUBLE_POS_INF), 'double pos infinity is infinite');
-    $this->assertTrue(0 < self::$DOUBLE_POS_INF, 'double pos infinity is greater than 0');
-    $this->assertFalse(is_nan(self::$DOUBLE_POS_INF), 'double pos infinity is not NaN');
-
-    $this->assertIsFloat(self::$DOUBLE_NEG_INF, 'double neg infinity is a double');
-    $this->assertTrue(is_infinite(self::$DOUBLE_NEG_INF), 'double neg infinity is infinite');
-    $this->assertTrue(0 > self::$DOUBLE_NEG_INF, 'double neg infinity is less than 0');
-    $this->assertFalse(is_nan(self::$DOUBLE_NEG_INF), 'double neg infinity is not NaN');
-
   }
 
   function special_vals_provider()
   {
     self::make_special_vals();
-    return array(array(self::DOUBLE_TYPE, self::$DOUBLE_POS_INF, self::$LONG_BITS_POS_INF),
-                 array(self::DOUBLE_TYPE, self::$DOUBLE_NEG_INF, self::$LONG_BITS_NEG_INF),
+    return array(array(self::DOUBLE_TYPE, self::$FLOAT_POS_INF, self::$LONG_BITS_POS_INF),
+                 array(self::DOUBLE_TYPE, self::$FLOAT_NEG_INF, self::$LONG_BITS_NEG_INF),
                  array(self::FLOAT_TYPE, self::$FLOAT_POS_INF, self::$INT_BITS_POS_INF),
                  array(self::FLOAT_TYPE, self::$FLOAT_NEG_INF, self::$INT_BITS_NEG_INF));
   }
@@ -117,7 +96,7 @@ class FloatIntEncodingTest extends TestCase
   function nan_vals_provider()
   {
     self::make_special_vals();
-    return array(array(self::DOUBLE_TYPE, self::$DOUBLE_NAN, self::$LONG_BITS_NAN),
+    return array(array(self::DOUBLE_TYPE, self::$FLOAT_NAN, self::$LONG_BITS_NAN),
                  array(self::FLOAT_TYPE, self::$FLOAT_NAN, self::$INT_BITS_NAN));
   }
 
